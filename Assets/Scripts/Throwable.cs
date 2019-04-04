@@ -14,13 +14,15 @@ public class Throwable : MonoBehaviour {
 	void Update () {
 
         // This could also be tested by a collider, but this is just easier
-		if( transform.position.y < floor){
+        Debug.Log(GetComponent<Rigidbody>().velocity.magnitude);
+		if( transform.position.y < floor && GetComponent<Rigidbody>().velocity.magnitude < 2f){
             start_destroy();
         }
 	}
 
     void start_destroy(){
         // Shrink, and then Destroy()
+        // What happens when a coroutine is called every frame?
         StartCoroutine("shrink");
     }
 
