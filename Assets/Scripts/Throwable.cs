@@ -15,7 +15,10 @@ public class Throwable : MonoBehaviour {
 
         // This could also be tested by a collider, but this is just easier
         Debug.Log(GetComponent<Rigidbody>().velocity.magnitude);
-		if( transform.position.y < floor && GetComponent<Rigidbody>().velocity.magnitude < 2f){
+		if( transform.position.y < floor 
+            //|| GetComponent<Rigidbody>().velocity.magnitude < 2f
+        )
+        {
             start_destroy();
         }
 	}

@@ -1468,7 +1468,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -2695,6 +2695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1121892701}
+  - component: {fileID: 1121892702}
   m_Layer: 0
   m_Name: CameraHolder
   m_TagString: Untagged
@@ -2718,6 +2719,22 @@ Transform:
   m_Father: {fileID: 1671927656}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1121892702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1121892700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c8dd4fd76d84d2492a37c9fd493360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  origin: {x: 0, y: 0, z: 0}
+  vertical_speed: 0.5
+  horizontal_speed: 8
+  zoom_speed: 2
 --- !u!1 &1158184430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3416,12 +3433,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1671927654}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70c8dd4fd76d84d2492a37c9fd493360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 10
+  origin: {x: 0, y: 0, z: 0}
+  vertical_speed: 0.2
+  horizontal_speed: 10
+  zoom_speed: 2
 --- !u!4 &1671927656
 Transform:
   m_ObjectHideFlags: 0
