@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // If this block falls below a certain point, it will be "collected"
 // depending on its assigned point value
@@ -9,6 +10,7 @@ public class PointBlock : MonoBehaviour
     public int value = 10;
     public float ground = -0.9f;
     private Rigidbody rb;
+    public UnityEvent earned_event;
 
     void Start(){
         rb = GetComponent<Rigidbody>();
@@ -35,6 +37,7 @@ public class PointBlock : MonoBehaviour
 
         //Destroy the object
         Debug.Log("You've earned " + value + " points!");
+        earned_event.Invoke();
         Destroy(gameObject);
     }
 }

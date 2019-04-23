@@ -14,7 +14,7 @@ public class Throwable : MonoBehaviour {
 	void Update () {
 
         // This could also be tested by a collider, but this is just easier
-        Debug.Log(GetComponent<Rigidbody>().velocity.magnitude);
+        //Debug.Log(GetComponent<Rigidbody>().velocity.magnitude);
 		if( transform.position.y < floor 
             //|| GetComponent<Rigidbody>().velocity.magnitude < 2f
         )
