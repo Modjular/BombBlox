@@ -7,17 +7,23 @@ using UnityEngine.UI;
 // Maybe it would be better to have this in a central gameManager...
 public class PointManager : MonoBehaviour
 {
-    public Text scoreText;
+    public Text score_text;
+    private AudioSource audio_source;
 
     public int points = 0;
 
+    void Start()
+    {
+        audio_source = GetComponent<AudioSource>();
+    }
+
     public void addPoints(int amt){
         points += amt;
-        Debug.Log("Points added, total is now " + points);
+        audio_source.Play();
     }
     
     void Update() {
-        scoreText.text = "Score: " + points;
+        score_text.text = "X " + points;
     }
 
 }
