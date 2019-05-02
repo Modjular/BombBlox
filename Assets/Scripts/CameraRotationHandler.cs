@@ -27,8 +27,7 @@ public class CameraRotationHandler : MonoBehaviour
             }
         }
 
-
-        if(Input.GetMouseButton(0)){
+        if(Input.GetMouseButton(0)) {
 
             // Get the mouse delta. This is not in the range -1...1
             float h = horizontal_speed * Input.GetAxis("Mouse X");
@@ -44,5 +43,34 @@ public class CameraRotationHandler : MonoBehaviour
                 transform.position = new Vector3(transform.position.x, 10f, transform.position.z);
             }
         }
+
+        if(movementKeysActivated()) {
+            float h = -horizontal_speed * 0.25f * Input.GetAxis("Horizontal");
+            float v = -vertical_speed * 0.25f * Input.GetAxis("Vertical");
+
+            // v is inversed because...reasons
+            transform.RotateAround(origin, Vector3.up, h);
+            transform.position = new Vector3(transform.position.x, transform.position.y - v, transform.position.z);
+
+            if (transform.position.y < -0.5f){
+                transform.position = new Vector3(transform.position.x, -0.5f, transform.position.z);
+            }else if (transform.position.y > 10f){
+                transform.position = new Vector3(transform.position.x, 10f, transform.position.z);
+            }
+        }
+    }
+
+    bool movementKeysActivated() {
+        if (Input.GetKey(KeyCode.W) ||
+            Input.GetKey(KeyCode.A) ||
+            Input.GetKey(KeyCode.S) ||
+            Input.GetKey(KeyCode.D) ||
+            Input.GetKey(KeyCode.UpArrow) ||
+            Input.GetKey(KeyCode.LeftArrow) ||
+            Input.GetKey(KeyCode.DownArrow) ||
+            Input.GetKey(KeyCode.RightArrow)) {
+                return true;
+            }
+        return false;
     }
 }
