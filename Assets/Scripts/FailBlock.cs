@@ -5,12 +5,12 @@ using UnityEngine.Events;
 
 // If this block falls below a certain point, it will be "collected"
 // depending on its assigned point value
-public class PointBlock : MonoBehaviour
+public class FailBlock : MonoBehaviour
 {
     public int value = 10;
     public float ground = -0.9f;
     private Rigidbody rb;
-    public UnityEvent earned_event;
+    public UnityEvent failed_event;
 
     void Start(){
         rb = GetComponent<Rigidbody>();
@@ -36,8 +36,8 @@ public class PointBlock : MonoBehaviour
         // Increment global "Points"
 
         //Destroy the object
-        Debug.Log("Earned a point");
-        earned_event.Invoke();
+        Debug.Log("Game over");
+        failed_event.Invoke();
         Destroy(gameObject);
     }
 }
