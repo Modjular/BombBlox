@@ -7,29 +7,48 @@ public class TNT : MonoBehaviour {
     public float radius = 5.0F;
     public float power = 10.0F;
     public CameraShakeHandler csh;
+    public bool is_exploding = false;
 
     void OnCollisionEnter(Collision collision){
+
+        // If we get hit by a projectile, start the explosion
+
         if(collision.gameObject.tag == "Projectile"){
-            //print("HIT BY PROJECTILE");
+
             Color faded = GetComponent<MeshRenderer>().material.color;
             faded.a = 0;
             //GetComponent<MeshRenderer>().material.color = faded;
             Material mymat = GetComponent<Renderer>().material;
             //mymat.SetColor("_EmissionColor", Color.white);
+
             explode();
         }
     }
 
     public void explode()
     {
-        Vector3 explosionPos = transform.position;
-        Collider[] colliders = Physics.OverlapSphere(explosionPos, radius);
+        is_exploding = true; // other TNT blocks won't try re-explodes this one
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+        
+        // We'll add an explosion force to every hit within our 
+        // explosion-radius
+        // - AND -
+        // we'll call explode on any unexploded TNT blocks we find
+
         foreach (Collider hit in colliders)
         {
+            if (hit.CompareTag("TNT") && hit.GetComponent<TNT>().is_exploding == false){
+                hit.GetComponent<TNT>().explode();
+            }
+
+            // If we don't make the following an ELSE, the TNT blocks
+            // will be affected by other TNT explosions
+
             Rigidbody rb = hit.GetComponent<Rigidbody>();
 
-            if (rb != null)
-                rb.AddExplosionForce(power, explosionPos, radius, 3.0F);
+            if (rb != null){
+                rb.AddExplosionForce(power, transform.position, radius, 3.0F);
+            }
         }
 
         // Play the explosion sound and animations
