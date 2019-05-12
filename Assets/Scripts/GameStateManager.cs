@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameStateManager : MonoBehaviour
 {
+    // state 1 = win
+    // state 2 = lose
     int state = 0;
 
 
