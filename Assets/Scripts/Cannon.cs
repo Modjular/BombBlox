@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Cannon : MonoBehaviour {
 
+    [SerializeField] GameStateManager gamestate;
     public GameObject projectile;
     public float force_strength;
     private bool is_charging = false;
     public float charge_rate = 0.02f;
     private float total_charge = 0f;
     public float charge_max = 5f;
+    public float ammo_remaining = 10;
 
     void Update(){
         if(Input.GetKeyDown(KeyCode.Space)){
@@ -34,5 +36,12 @@ public class Cannon : MonoBehaviour {
         GameObject new_p = Instantiate(projectile, transform.position, transform.rotation);
         Rigidbody rb = new_p.GetComponent<Rigidbody>();
         rb.AddForce(transform.forward.normalized * power);
+
+        ammo_remaining--;
+
+        if (ammo_remaining == 0) {
+            gamestate.setState(2);
+            Debug.Log("lost cause of ammo");
+        }
     }
 }
