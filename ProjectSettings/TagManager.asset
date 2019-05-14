@@ -8,6 +8,8 @@ TagManager:
   - Block
   - Ground
   - TNT
+  - PointManager
+  - GameManager
   layers:
   - Default
   - TransparentFX

@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 1144173166500167426}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,5 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a64f6534b9fce43809c1dd2b21d97a1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gamestate: {fileID: 0}
   projectile: {fileID: 1389879918965858, guid: ff8cf17c9fb5b4c20b82c3bdcfd91241, type: 3}
   force_strength: 3500
+  charge_rate: 0.02
+  charge_max: 5
+  ammo_remaining: 10
