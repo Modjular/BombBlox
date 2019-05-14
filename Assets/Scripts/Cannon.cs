@@ -41,7 +41,7 @@ public class Cannon : MonoBehaviour {
 
         if (ammo_remaining == 0) {
             gamestate.setState(2);
-            Debug.Log("lost cause of ammo");
+            Debug.Log("OUT OF AMMO");
         }
     }
 }

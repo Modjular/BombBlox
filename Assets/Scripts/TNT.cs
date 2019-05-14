@@ -9,6 +9,18 @@ public class TNT : MonoBehaviour {
     public CameraShakeHandler csh;
     public bool is_exploding = false;
 
+    void Awake(){
+        // In order to ensure we have a reference to
+        // the CameraShakeHandler, we need find the
+        // main camera
+
+        csh = Camera.main.GetComponent<CameraShakeHandler>();
+        
+        if(!csh){
+            Debug.LogError("TNT could not find a CameraShakeHandler attached to Camera.main");
+        }
+    }
+
     void OnCollisionEnter(Collision collision){
 
         // If we get hit by a projectile, start the explosion
@@ -39,6 +51,7 @@ public class TNT : MonoBehaviour {
         {
             if (hit.CompareTag("TNT") && hit.GetComponent<TNT>().is_exploding == false){
                 hit.GetComponent<TNT>().explode();
+                Debug.Log("found and exploded another TNT");
             }
 
             // If we don't make the following an ELSE, the TNT blocks
