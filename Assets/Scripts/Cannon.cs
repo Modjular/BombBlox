@@ -13,6 +13,18 @@ public class Cannon : MonoBehaviour {
     public float charge_max = 5f;
     public float ammo_remaining = 10;
 
+
+    void Awake(){
+        gamestate = GameObject.FindGameObjectWithTag("GameManager")
+            .GetComponent<GameStateManager>();
+        
+        if(!gamestate){
+            Debug.LogError("Cannon cannot find anything tagged 'GameManager' in the scene");
+        }
+    }
+
+
+
     void Update(){
         if(Input.GetKeyDown(KeyCode.Space)){
             is_charging = true;

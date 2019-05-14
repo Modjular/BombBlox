@@ -7,10 +7,25 @@ using UnityEngine.Events;
 // depending on its assigned point value
 public class PointBlock : MonoBehaviour
 {
+    PointManager pm;
     public int value = 10;
     public float ground = -0.9f;
     private Rigidbody rb;
     public UnityEvent earned_event;
+
+
+    void Awake(){
+        // We're doing this because it's too much work to 
+        // find the PointManager whenever we make a new scene
+        // Theres probably a better way to do this.
+        pm = GameObject.FindGameObjectWithTag("PointManager").
+            GetComponent<PointManager>();
+
+        if(!pm){
+            Debug.LogError("PointBlock cannot find anything tagged 'PointManager' in the scene");
+        }
+    }
+
 
     void Start(){
         rb = GetComponent<Rigidbody>();

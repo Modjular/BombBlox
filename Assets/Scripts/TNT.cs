@@ -17,7 +17,7 @@ public class TNT : MonoBehaviour {
         csh = Camera.main.GetComponent<CameraShakeHandler>();
         
         if(!csh){
-            Debug.LogError("TNT could not find a CameraShakeHandler attached to Camera.main");
+            Debug.LogError("TNT cannot find a CameraShakeHandler component attached to Camera.main");
         }
     }
 
