@@ -16,7 +16,7 @@ public class PointBlock : MonoBehaviour
 
     void Awake(){
         // We're doing this because it's too much work to 
-        // find the PointManager whenever we make a new scene
+        // manually connect the PointManager whenever we make a new scene
         // Theres probably a better way to do this.
         pm = GameObject.FindGameObjectWithTag("PointManager").
             GetComponent<PointManager>();
@@ -51,8 +51,9 @@ public class PointBlock : MonoBehaviour
         // Increment global "Points"
 
         //Destroy the object
-        Debug.Log("Earned a point");
-        earned_event.Invoke();
+        //Debug.Log("Earned a point");
+        //earned_event.Invoke();
+        pm.addPoints(value);
         Destroy(gameObject);
     }
 }

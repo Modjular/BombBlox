@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Cannon : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class Cannon : MonoBehaviour {
     private float total_charge = 0f;
     public float charge_max = 5f;
     public float ammo_remaining = 10;
+
+    public Text count_text;
 
 
     void Awake(){
@@ -45,11 +48,18 @@ public class Cannon : MonoBehaviour {
     }
 	
     public void shoot(float power){
-        GameObject new_p = Instantiate(projectile, transform.position, transform.rotation);
-        Rigidbody rb = new_p.GetComponent<Rigidbody>();
-        rb.AddForce(transform.forward.normalized * power);
+        if(ammo_remaining > 0)
+        {
+            ammo_remaining--;
+            
+            GameObject new_p = Instantiate(projectile, transform.position, transform.rotation);
+            Rigidbody rb = new_p.GetComponent<Rigidbody>();
+            rb.AddForce(transform.forward.normalized * power);
+        
+            // Update GUI
+            count_text.text = "x " + ammo_remaining;
+        }
 
-        ammo_remaining--;
 
         if (ammo_remaining == 0) {
             gamestate.setState(2);
