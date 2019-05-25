@@ -44,6 +44,18 @@ public class Cannon : MonoBehaviour {
         }
 
 
+        // we can only say we've lost if we're out of ammo
+        // AND
+        // all blocks are at rest
+        if(ammo_remaining <= 0 && gamestate.getState() != 2)
+        {
+            // this second function is more expensive
+            // I don't want it running every update()
+            // if it doesn't have to be
+            if(sceneAtRest()){
+                gamestate.setState(2);
+            }
+        }
         //Debug.DrawLine(transform.position, transform.position + transform.forward.normalized * 10, Color.red, 2, false);
     }
 	
@@ -62,8 +74,19 @@ public class Cannon : MonoBehaviour {
 
 
         if (ammo_remaining == 0) {
-            gamestate.setState(2);
             Debug.Log("OUT OF AMMO");
         }
+    }
+
+     // Returns true if all objects in scene are at "rest"
+    // Rest is determined by some minimum velocity
+    bool sceneAtRest()
+    {
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Block")){
+            if(go.GetComponent<Rigidbody>().velocity.magnitude > 0.5f){
+                return false;
+            }
+        }
+        return true;
     }
 }

@@ -11,10 +11,14 @@ public class PointManager : MonoBehaviour
     private AudioSource audio_source;
 
     public int points = 0;
+    public int max_points = 250;
+    GameStateManager gsm;
 
     void Start()
     {
         audio_source = GetComponent<AudioSource>();
+        gsm = GameObject.FindGameObjectWithTag("GameManager")
+            .GetComponent<GameStateManager>();
     }
 
     public void addPoints(int amt){
@@ -23,7 +27,10 @@ public class PointManager : MonoBehaviour
     }
     
     void Update() {
-        score_text.text = "X " + points;
+        score_text.text = "X " + points + " / " + max_points;
+        if(points >= max_points){
+            gsm.setState(1);
+        }
     }
 
 }
